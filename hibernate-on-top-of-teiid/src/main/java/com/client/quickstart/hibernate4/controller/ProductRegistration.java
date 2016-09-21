@@ -16,6 +16,8 @@
  */
 package com.client.quickstart.hibernate4.controller;
 
+import java.net.InetAddress;
+
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
@@ -59,7 +61,16 @@ public class ProductRegistration {
 
 	@Produces
 	public void register() throws Exception {
-		log.info("Registering " + newProductInfo.getCompanyName());
+                log.info("!! Registering " + newProductInfo.getCompanyName());
+try {
+  System.out.println("!!!!!!!!!!!!!!!!! register");
+  log.info("!!!!!!!!!!!!!!!!! register");
+  InetAddress addr = InetAddress.getByName("jdbc-datavirt.demo.svc.cluster.local");
+  System.out.println("!!!!!!!!!!!!!!!!!!!!! addr " + addr);
+  log.info("!!!!!!!!!!!!!!!!!!!!! addr " + addr);
+} catch (Exception e){
+  e.printStackTrace();
+}
 
 		// using Hibernate session(Native API) and JPA entitymanager
 		Session session = (Session) em.getDelegate();
